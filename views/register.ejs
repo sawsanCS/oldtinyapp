@@ -3,17 +3,13 @@
 <head>
   //<%- include('partials/_header') %>
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+ <!----> <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <title>Register a new user</title>
 </head>
 
 <body>
-  <div class="card text-center">
-      <div class="card-header"></div>
-      
-    <div class="card-footer text-muted">
-      <form method="POST" action="/register">
-      
+<div class="card text-center">
+    <form method="POST" action="/register"> 
       <h2 align= 'center'> Register</h2>
       <label align='center'> Email: </label>
       <input type = 'email' name = 'email' length ='40' width="40" placeholder="type your email here" align= 'center'/>
@@ -21,10 +17,15 @@
       <label align='center'> Password: </label>
       <input type = 'password' name = 'password' length ='40' width="40" placeholder="type your email here" align= 'center'/>
       <button type="submit" class="btn btn-primary">Submit</button>
-    </form></div>
+    </form>
+    <div class="card-header"></div>
+      
+    <div class="card-footer text-muted">
+      
+      </div>
   </div>
   
-  
+ 
 
   <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
