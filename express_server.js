@@ -72,11 +72,18 @@ app.get("/urls/:shortURL", (req, res) => {
 });
 
 app.post("/urls/:shortURL", (req, res) =>{
-
-  urlDatabase[req.params.shortURL].longURL= req.body.longURL;
+  let urls = {};
+  urls = urlsForUser (req.cookies.userId);
+  for (const url in urls) {
+    if (urls[url].longURL === urlDatabase[url].longURL) {
+      urlDatabase[req.params.shortURL].longURL = req.body.longURL;
+    }
+  }
   console.log(urlDatabase);
   res.redirect('/urls');
-});
+  });
+   
+
 app.get("/urls/new", (req, res) => {
   console.log('hello');
   let user = req.cookies.userId;
