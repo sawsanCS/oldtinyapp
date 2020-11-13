@@ -156,10 +156,14 @@ app.post("/logout", (req, res) => {
 
 app.post("/urls/:shortURL/delete", (req, res) =>{
   console.log(req.params.shortURL);
-  delete urlDatabase[req.params.shortURL];
-  if (delete urlDatabase[req.params.shortURL]) {
-    console.log('successfully deleted')
-  };
+  let urls = {};
+  urls = urlsForUser (req.cookies.userId);
+  for (url in urls) {
+    if (url === req.params.shortURL) {
+       delete urlDatabase[req.params.shortURL];
+       console.log('successfully deleted')
+    }
+  }
   console.log(urlDatabase);
   res.redirect('/urls');
 });
