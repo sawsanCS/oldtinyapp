@@ -1,5 +1,6 @@
 const express = require("express");
 var cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 var app = express()
 app.use(cookieParser())
 const PORT = 8080; 
@@ -199,25 +200,28 @@ app.get("/register", (req, res) => {
   res.render('register', templateVars);
   });
 app.post("/register", (req, res) => {
-  const id = Math.floor(Math.random() * 100); 
+  const userID = generateRandomString();
   const email = req.body.email;
   const password = req.body.password;
-console.log(email);
+  const hashedPassword = bcrypt.hashSync(password, 10);
+  let newUser = {
+    id: userID,
+    email: req.body.email,
+    password: hashedPassword,
+  };
   if (email === "" || password ==="") {
-    res.status(400);
-    res.send('your email or your password is empty');
+    res.status(400).send('your email or your password is empty');
     res.end();
   }
   console.log(fetchUserByEmail(users, email));
   if (fetchUserByEmail(users, email)) {
-    res.status(400);
-    res.send('Sorry but this email already exists');
+    res.status(400).send('Sorry but this email already exists');
     res.end();
   }
   else {
-    const newUser ={id, email, password};
-    users[id]= newUser;
-    res.cookie("userId", id);
+  
+    users[userID]= newUser;
+    res.cookie("userId", userID);
     console.log(newUser);
     res.redirect('/urls');
   }
