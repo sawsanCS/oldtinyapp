@@ -14,8 +14,8 @@
         <h5 class="card-title">TinyURL for: <%= longURL %></h5>
         <p class="card-text">Short URL: <a href="/u/<%= shortURL %>"><%= shortURL %></a></p>
       </div>
-    <div class="card-footer text-muted"><form method="POST" action="/urls/<%=shortURL%>/">
-      
+   
+      <div class="card-footer text-muted"><form method="POST" action="/urls/<%=shortURL%>/">
       <h2 align= 'center'> Edit</h2>
       <label align='center'> New URL : </label>
       <input type = 'text' name = 'longURL' length ='40' width="40" value="<%=longURL%>" align= 'center'/>

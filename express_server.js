@@ -89,11 +89,12 @@ app.post('/urls/new', (req, res) => {
 app.get("/urls/:shortURL", (req, res) => {
   let shortURL = req.params.shortURL;
   let userId = req.session.user_id;
+  const user = users [userId];
   if (urlsForUser(userId, shortURL)) {
     let templateVars = {
       shortURL : shortURL,
       longURL: urlDatabase[shortURL].longURL,
-      user: userId
+      user: user
     };
     res.render("urls_show", templateVars);
   } else {
@@ -146,7 +147,7 @@ app.post("/urls", (req, res) => {
 });
 app.get("/login", (req, res) => {
   const user = users[req.session.user_id];
-  res.render("login", user);
+  res.render("login", {user: user});
 });
 app.post("/login", (req, res) => {
   const thisEmail = req.body.email;
@@ -171,8 +172,8 @@ app.post("/login", (req, res) => {
 });
 app.get('/logout', (req, res) => {
   const userId = req.session.user_id;
-  let user = users[userId];
-  const templateVals = {user: user};
+  const user = users[userId];
+  const templateVals = {user : user};
   res.render('logout', templateVals);
 });
 app.post("/logout", (req, res) => {
@@ -202,11 +203,12 @@ app.get("/u/:shortURL", (req, res) => {
 
 
 app.get("/register", (req, res) => {
-  let userId = req.session.user_id;
-  if (userId) {
+  const userId = req.session.user_id;
+  const user = users[userId];
+    if (userId) {
     res.redirect('/urls');
   } else {
-    res.render("register");
+    res.render("register", {user : user});
   }
 });
 app.post("/register", (req, res) => {
